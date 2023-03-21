@@ -262,3 +262,29 @@ CREATE TABLE SmartBank_Test.dbo.UITheme (
 	CssFile varchar(50) COLLATE Cyrillic_General_CI_AS NOT NULL,
 	CONSTRAINT PK_UITheme PRIMARY KEY (UITheme_ID)
 );
+
+-- SmartBank_Test.dbo.AuthSMS definition
+
+-- Drop table
+
+-- DROP TABLE SmartBank_Test.dbo.AuthSMS;
+
+CREATE TABLE SmartBank_Test.dbo.AuthSMS (
+	AuthSMS_ID int IDENTITY(1000000,1) NOT NULL,
+	AuthTool_IDREF int NOT NULL,
+	MobilePhone_IDREF int NOT NULL,
+	CONSTRAINT PK_AuthSMS PRIMARY KEY (AuthSMS_ID)
+);
+ CREATE  UNIQUE NONCLUSTERED INDEX IX_AuthSMS_AuthTool ON dbo.AuthSMS (  AuthTool_IDREF ASC  )  
+	 WITH (  PAD_INDEX = OFF ,FILLFACTOR = 100  ,SORT_IN_TEMPDB = OFF , IGNORE_DUP_KEY = OFF , STATISTICS_NORECOMPUTE = OFF , ONLINE = OFF , ALLOW_ROW_LOCKS = ON , ALLOW_PAGE_LOCKS = ON  )
+	 ON [PRIMARY ] ;
+ CREATE NONCLUSTERED INDEX IX_AuthSMS_MobilePhone ON dbo.AuthSMS (  MobilePhone_IDREF ASC  )  
+	 WITH (  PAD_INDEX = OFF ,FILLFACTOR = 100  ,SORT_IN_TEMPDB = OFF , IGNORE_DUP_KEY = OFF , STATISTICS_NORECOMPUTE = OFF , ONLINE = OFF , ALLOW_ROW_LOCKS = ON , ALLOW_PAGE_LOCKS = ON  )
+	 ON [PRIMARY ] ;
+ALTER TABLE SmartBank_Test.dbo.AuthSMS WITH NOCHECK ADD CONSTRAINT CK_AuthSMS_MobilePhoneID CHECK ([dbo].[isAuthSMSMobilePhoneUnique]([MobilePhone_IDREF])=(1));
+
+
+-- SmartBank_Test.dbo.AuthSMS foreign keys
+
+ALTER TABLE SmartBank_Test.dbo.AuthSMS ADD CONSTRAINT FK_AuthSMS_AuthTool FOREIGN KEY (AuthTool_IDREF) REFERENCES SmartBank_Test.dbo.AuthTool(AuthTool_ID);
+ALTER TABLE SmartBank_Test.dbo.AuthSMS ADD CONSTRAINT FK_AuthSMS_MobilePhone FOREIGN KEY (MobilePhone_IDREF) REFERENCES SmartBank_Test.dbo.MobilePhone(MobilePhone_ID);
