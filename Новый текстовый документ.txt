@@ -30,3 +30,52 @@ begin
 	return @result;
 
 end;
+
+
+
+
+create function [dbo].[isAuthToolRedundant_AuthTool]
+(
+	@authtoolid int,
+	@authtoolstatus char(4),
+	@authtooltype char(4)
+)
+returns bit
+as
+begin
+
+	declare @result bit;
+	declare @userid int;
+
+	select
+		@userid = uat.User_IDREF
+	from
+		map_User_AuthTool uat
+	where
+		uat.AuthTool_IDREF = @authtoolid;
+
+	if @userid is null
+		begin
+			
+			set @result = 0;
+			return @result;
+		
+		end;
+	else
+		begin
+		
+			select
+				@result = case when count(*) > 1 then 1 else 0 end
+			from
+				AuthTool at
+				join map_User_AuthTool uat on uat.AuthTool_IDREF = at.AuthTool_ID
+			where
+				uat.User_IDREF = @userid
+				and at.AuthToolStatus_IDREF = 'ACTV'
+				and at.AuthToolType_IDREF = @authtooltype;
+			
+		end;
+
+	return @result;
+
+end;
