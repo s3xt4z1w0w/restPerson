@@ -79,3 +79,29 @@ begin
 	return @result;
 
 end;
+
+
+
+CREATE function [dbo].[isAuthSMSMobilePhoneUnique] (
+	@mobilePhone_ID int
+)
+returns bit
+as
+begin
+
+	declare @isInUse bit;
+
+	select
+		@isInUse = case when count(*) > 1 then 0 else 1 end
+	from
+		AuthTool at
+		join AuthSMS asms on asms.AuthTool_IDREF = at.AuthTool_ID
+		join MobilePhone mp on mp.MobilePhone_ID = asms.MobilePhone_IDREF
+	where
+		at.AuthToolStatus_IDREF = 'ACTV'
+		and at.AuthToolType_IDREF = 'SMSM'
+		and mp.MobilePhone_ID = @mobilePhone_ID;
+	
+	return @isInUse;
+
+end;
