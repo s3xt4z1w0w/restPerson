@@ -18,3 +18,9 @@ public interface Repository extends JpaRepository<Developer, Integer>{
                     """)
     void updateDeveloper(@Param("age") String age, @Param("iin") String iin);
 }
+   create table developer(
+   id int not null primary key,
+   name varchar(255),
+   age varchar(255),
+   iin varchar(255)
+   )
