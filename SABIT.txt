@@ -62,7 +62,7 @@
         "addressHouseNo": "7",
         "addressAptNo": null,
         "addressTitle": "ИЛИЙСКИЙ РАЙОН, УЛИЦА Кенен Әзірбаев, 7, null",
-        "isCitizenship": true,
+        "isCitizenship": true, //если 398 = true or false
         "paperTitle": "УДОСТОВЕРЕНИЕ РК",
         "paperType": "IDEN", //PASS
         "paperIssueDate": "2013-07-02T00:00:00.000+00:00",
@@ -73,3 +73,153 @@
         "paperBSystem": "SMBK",
         "registeredBy": "Зарегистрирован в SmartBank 3.0",
         "regChannelId": "WEBB"
+
+{
+    "iin": "970609351571",
+    "firstName": "САБИТ",
+    "surname": "БАТЫРХАНОВ",
+    "patronymic": "НУРИТДИНОВИЧ",
+    "engFirstName": "SABIT",
+    "engSurname": "BATYRKHANOV",
+    "birthDate": "1997-06-09T00:00:00",
+    "gender": {
+        "code": "1",
+        "nameRu": "Мужской",
+        "nameKz": "Ер",
+        "changeDate": "2008-03-01T13:21:45+06:00"
+    },
+    "nationality": {
+        "code": "005",
+        "nameRu": "КАЗАХ",
+        "nameKz": "ҚАЗАҚ",
+        "changeDate": "2008-03-01T13:21:45+06:00"
+    },
+    "citizenship": {
+        "code": "398",
+        "nameRu": "КАЗАХСТАН",
+        "nameKz": "ҚАЗАҚСТАН",
+        "changeDate": "2008-03-01T13:21:44+06:00"
+    },
+    "lifeStatus": {
+        "code": "0",
+        "nameRu": "Нормальный",
+        "nameKz": "Қалыпты",
+        "changeDate": "2008-03-01T13:21:45+06:00"
+    },
+    "birthPlace": {
+        "country": {
+            "code": "417",
+            "nameRu": "КЫРГЫЗСТАН",
+            "nameKz": "ҚЫРҒЫСТАН",
+            "changeDate": "2008-03-01T13:21:44+06:00"
+        },
+        "district": {
+            "code": "9999",
+            "nameRu": "ЗАГРАНИЦА",
+            "nameKz": "ШЕТЕЛ",
+            "changeDate": "2008-03-01T13:21:45+06:00"
+        },
+        "region": {
+            "code": "9999999",
+            "nameRu": "ЗАГРАНИЦА",
+            "nameKz": "ШЕТЕЛ",
+            "changeDate": "2008-03-01T13:21:45+06:00"
+        },
+        "city": "БИШКЕК"
+    },
+    "regAddress": {
+        "country": {
+            "code": "398",
+            "nameRu": "КАЗАХСТАН",
+            "nameKz": "ҚАЗАҚСТАН",
+            "changeDate": "2008-03-01T13:21:44+06:00"
+        },
+        "district": {
+            "code": "1907",
+            "nameRu": "АЛМАТИНСКАЯ",
+            "nameKz": "АЛМАТЫ",
+            "changeDate": "2008-03-01T13:21:45+06:00"
+        },
+        "region": {
+            "code": "1907211",
+            "nameRu": "ИЛИЙСКИЙ РАЙОН",
+            "nameKz": "ІЛЕ АУДАНЫ",
+            "changeDate": "2008-03-01T13:21:45+06:00"
+        },
+        "street": "УЛИЦА Кенен Әзірбаев",
+        "building": "7",
+        "flat": null,
+        "beginDate": "2012-10-10T00:00:00",
+        "status": {
+            "code": "1",
+            "nameRu": "Зарегистрирован",
+            "nameKz": "Тіркелді",
+            "changeDate": "2013-11-29T22:36:46+06:00"
+        },
+        "invalidity": {
+            "code": "0",
+            "nameRu": "Зарегистрирован",
+            "nameKz": "Тіркелді",
+            "changeDate": "2013-11-29T22:36:46+06:00"
+        },
+        "arCode": "0201300073998801"
+    },
+    "documents": {
+        "listOfDocuments": [
+            {
+                "type": {
+                    "code": "002",
+                    "nameRu": "УДОСТОВЕРЕНИЕ РК",
+                    "nameKz": "ҚР ЖЕКЕ КУӘЛІГІ",
+                    "changeDate": "2008-03-01T13:21:45+06:00"
+                },
+                "number": "035268406",
+                "beginDate": "2013-07-02T00:00:00",
+                "endDate": "2023-07-01T00:00:00",
+                "issueOrganization": {
+                    "code": "002",
+                    "nameRu": "МИНИСТЕРСТВО ВНУТРЕННИХ ДЕЛ РК",
+                    "nameKz": "ҚР ІШКІ ІСТЕР МИНИСТРЛІГІ",
+                    "changeDate": "2008-03-01T13:21:45+06:00"
+                },
+                "status": {
+                    "code": "00",
+                    "nameRu": "ДОКУМЕНТ ДЕЙСТВИТЕЛЕН",
+                    "nameKz": "ҚҰЖАТ ЖАРАМДЫ",
+                    "changeDate": "2008-03-01T13:21:45+06:00"
+                },
+                "firstName": "САБИТ",
+                "surname": "БАТЫРХАНОВ",
+                "patronymic": "НУРИТДИНОВИЧ",
+                "birthDate": "1997-06-09T00:00:00"
+            },
+            {
+                "type": {
+                    "code": "001",
+                    "nameRu": "ПАСПОРТ РК",
+                    "nameKz": "ҚР ПАСПОРТЫ",
+                    "changeDate": "2008-03-01T13:21:45+06:00"
+                },
+                "number": "N08783809",
+                "beginDate": "2013-07-02T00:00:00",
+                "endDate": "2023-07-01T00:00:00",
+                "issueOrganization": {
+                    "code": "002",
+                    "nameRu": "МИНИСТЕРСТВО ВНУТРЕННИХ ДЕЛ РК",
+                    "nameKz": "ҚР ІШКІ ІСТЕР МИНИСТРЛІГІ",
+                    "changeDate": "2008-03-01T13:21:45+06:00"
+                },
+                "status": {
+                    "code": "00",
+                    "nameRu": "ДОКУМЕНТ ДЕЙСТВИТЕЛЕН",
+                    "nameKz": "ҚҰЖАТ ЖАРАМДЫ",
+                    "changeDate": "2008-03-01T13:21:45+06:00"
+                },
+                "firstName": "САБИТ",
+                "surname": "БАТЫРХАНОВ",
+                "patronymic": "НУРИТДИНОВИЧ",
+                "birthDate": "1997-06-09T00:00:00"
+            }
+        ]
+    }
+}
