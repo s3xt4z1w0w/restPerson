@@ -1,0 +1,47 @@
+	
+	
+	private ListOfDocument getActiveIdentityOrPassport(SCBPersonalData data) {
+        ListOfDocument documentIdentity = null;
+        ListOfDocument documentPassport = null;
+        ListOfDocument response;
+        for (ListOfDocument element : data.getDocuments().getListOfDocuments()) {
+            int statusCode = Integer.parseInt(element.getStatus().getCode());
+            int typeCode = Integer.parseInt(element.getType().getCode());
+            if (statusCode == STATUS_ACTIVE) {
+                if (typeCode == IDENTITY_TYPE) {
+                    if (documentIdentity == null) {
+                        documentIdentity = element;
+                    } else if (compareDate(documentIdentity, element)) {
+                        documentIdentity = element;
+                    }
+                } else if (typeCode == PASSPORT_TYPE) {
+                    if (documentPassport == null) {
+                        documentPassport = element;
+                    } else if (compareDate(documentPassport, element)) {
+                        documentPassport = element;
+                    }
+                }
+            }
+        }
+        if (documentIdentity == null && documentPassport == null) {
+            System.out.println("Нету действительного документа");
+        }
+        if (documentIdentity != null) {
+            response = documentIdentity;
+        } else {
+            response = documentPassport;
+        }
+        return response;
+    }
+    private boolean compareDate(ListOfDocument primaryDate, ListOfDocument elementDate) {
+        return primaryDate.getEndDate().compareTo(elementDate.getEndDate()) < 0;
+    }
+	
+	public interface SCB {
+    int CODE_KAZAKHSTAN = 398;
+    int STATUS_ACTIVE = 0;
+    int IDENTITY_TYPE = 2;
+    int PASSPORT_TYPE = 1;
+    String PAPER_STATUS_APPR = "APPR";
+    String BSYSTEM_SMBK = "SMBK";
+}
