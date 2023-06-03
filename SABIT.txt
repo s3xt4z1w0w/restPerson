@@ -45,3 +45,31 @@
     String PAPER_STATUS_APPR = "APPR";
     String BSYSTEM_SMBK = "SMBK";
 }
+
+
+
+ 	"firstName": "САБИТ",
+        "lastName": "БАТЫРХАНОВ",
+        "fatherName": "НУРИТДИНОВИЧ",
+        "gender": "MALE", //FEMALE
+        "birthDate": "1997-06-09T00:00:00.000+00:00",
+        "isResident": true, //false
+        "iin": "970609351571",
+        "mobilePhone": null,
+        "birthPlace": "КЫРГЫЗСТАН, ЗАГРАНИЦА, ЗАГРАНИЦА, БИШКЕК",
+        "addressCity": "ИЛИЙСКИЙ РАЙОН",
+        "addressPlace": "УЛИЦА Кенен Әзірбаев",
+        "addressHouseNo": "7",
+        "addressAptNo": null,
+        "addressTitle": "ИЛИЙСКИЙ РАЙОН, УЛИЦА Кенен Әзірбаев, 7, null",
+        "isCitizenship": true,
+        "paperTitle": "УДОСТОВЕРЕНИЕ РК",
+        "paperType": "IDEN", //PASS
+        "paperIssueDate": "2013-07-02T00:00:00.000+00:00",
+        "paperValidityDate": "2023-07-01T00:00:00.000+00:00",
+        "paperIssuer": "МИНИСТЕРСТВО ВНУТРЕННИХ ДЕЛ РК",
+        "paperNumber": "035268406",
+        "paperStatus": "APPR", //константы
+        "paperBSystem": "SMBK",
+        "registeredBy": "Зарегистрирован в SmartBank 3.0",
+        "regChannelId": "WEBB"
