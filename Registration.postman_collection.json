@@ -1,0 +1,413 @@
+{
+	"info": {
+		"_postman_id": "cd440645-69ca-46b6-a54f-04dce95daf10",
+		"name": "Registration",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "24375901",
+		"_collection_link": "https://grey-comet-849593.postman.co/workspace/test~702f7cc1-fc16-43a3-9553-26493b259e06/collection/24375901-cd440645-69ca-46b6-a54f-04dce95daf10?action=share&creator=24375901&source=collection_link"
+	},
+	"item": [
+		{
+			"name": "Openshift - DEV",
+			"item": [
+				{
+					"name": "DefineRoute",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"set variable\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    console.log('This is our sessionId',jsonData.body.sessionId)\r",
+									"    pm.environment.set('sessionId',jsonData.body.sessionId);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept-Language",
+								"value": "{{language}}",
+								"type": "text"
+							},
+							{
+								"key": "APP_VERSION",
+								"value": "1.1.0",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{openshift_dev_url}}/registration/defineRoute?deviceId=&phoneNumber=",
+							"host": [
+								"{{openshift_dev_url}}"
+							],
+							"path": [
+								"registration",
+								"defineRoute"
+							],
+							"query": [
+								{
+									"key": "deviceId",
+									"value": ""
+								},
+								{
+									"key": "phoneNumber",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Sms",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Session-Id",
+								"value": "{{sessionId}}",
+								"type": "text"
+							},
+							{
+								"key": "Accept-Language",
+								"value": "{{language}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{openshift_dev_url}}/registration/sms?code=",
+							"host": [
+								"{{openshift_dev_url}}"
+							],
+							"path": [
+								"registration",
+								"sms"
+							],
+							"query": [
+								{
+									"key": "code",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UploadSelfie",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Session-Id",
+								"value": "{{sessionId}}",
+								"type": "text"
+							},
+							{
+								"key": "Accept-Language",
+								"value": "{{language}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "payload",
+									"value": "{\n\"folder:meta_data\": {\"iin\": \"970514300927\", \"phoneNumber\":\"22\",\n\"Operation\":\"Reg\"\n  },\n\"media:tags\": {\n    \"mediaList\": [\n\t\"video_selfie\",\n    \"video_selfie_scan\"\n    ]\n  }\n}",
+									"type": "text"
+								},
+								{
+									"key": "mediaList",
+									"type": "file",
+									"src": []
+								}
+							]
+						},
+						"url": {
+							"raw": "{{openshift_dev_url}}/registration/biometry/uploadSelfie",
+							"host": [
+								"{{openshift_dev_url}}"
+							],
+							"path": [
+								"registration",
+								"biometry",
+								"uploadSelfie"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "StatusAnalyse",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Session-Id",
+								"value": "{{sessionId}}",
+								"type": "text"
+							},
+							{
+								"key": "Accept-Language",
+								"value": "{{language}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{openshift_dev_url}}/registration/biometry/statusAnalyse",
+							"host": [
+								"{{openshift_dev_url}}"
+							],
+							"path": [
+								"registration",
+								"biometry",
+								"statusAnalyse"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DigitalDocument",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Session-Id",
+								"value": "{{sessionId}}",
+								"type": "text"
+							},
+							{
+								"key": "Accept-Language",
+								"value": "{{language}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{openshift_dev_url}}/registration/digitalDocument/identityCard?otpCode",
+							"host": [
+								"{{openshift_dev_url}}"
+							],
+							"path": [
+								"registration",
+								"digitalDocument",
+								"identityCard"
+							],
+							"query": [
+								{
+									"key": "otpCode",
+									"value": null
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DocumentList",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Session-Id",
+								"value": "{{sessionId}}",
+								"type": "text"
+							},
+							{
+								"key": "Accept-Language",
+								"value": "{{language}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{openshift_dev_url}}/registration/documentList",
+							"host": [
+								"{{openshift_dev_url}}"
+							],
+							"path": [
+								"registration",
+								"documentList"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ErrorText",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Session-Id",
+								"value": "{{sessionId}}",
+								"type": "text"
+							},
+							{
+								"key": "Accept-Language",
+								"value": "{{language}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{openshift_dev_url}}/registration/errorText",
+							"host": [
+								"{{openshift_dev_url}}"
+							],
+							"path": [
+								"registration",
+								"errorText"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "VerificationIIN",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Session-Id",
+								"value": "{{sessionId}}",
+								"type": "text"
+							},
+							{
+								"key": "Accept-Language",
+								"value": "{{language}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{openshift_dev_url}}/registration/verification/iin?iin=",
+							"host": [
+								"{{openshift_dev_url}}"
+							],
+							"path": [
+								"registration",
+								"verification",
+								"iin"
+							],
+							"query": [
+								{
+									"key": "iin",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "VerificationProduct",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Session-Id",
+								"value": "{{sessionId}}",
+								"type": "text"
+							},
+							{
+								"key": "Accept-Language",
+								"value": "{{language}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{openshift_dev_url}}/registration/verification/product?iin=&product=",
+							"host": [
+								"{{openshift_dev_url}}"
+							],
+							"path": [
+								"registration",
+								"verification",
+								"product"
+							],
+							"query": [
+								{
+									"key": "iin",
+									"value": ""
+								},
+								{
+									"key": "product",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PasscodeSet",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Session-Id",
+								"value": "{{sessionId}}",
+								"type": "text"
+							},
+							{
+								"key": "Accept-Language",
+								"value": "{{language}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{openshift_dev_url}}/registration/passcode/set?passcode=",
+							"host": [
+								"{{openshift_dev_url}}"
+							],
+							"path": [
+								"registration",
+								"passcode",
+								"set"
+							],
+							"query": [
+								{
+									"key": "passcode",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "url",
+			"value": "http://localhost:8080/registration",
+			"type": "string"
+		}
+	]
+}
