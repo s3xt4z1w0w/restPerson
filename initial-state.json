@@ -1,0 +1,16 @@
+// Начальное состояние: Всегда возвращает 200 для GET /user/{id}
+{
+    "scenarioName": "UserRequestScenario",
+    "requiredScenarioState": "Started",
+    "request": {
+        "method": "GET",
+        "urlPathPattern": "/user/.*"
+    },
+    "response": {
+        "status": 200,
+        "body": "{\"userId\": \"1\", \"name\": \"John Doe\"}",
+        "headers": {
+            "Content-Type": "application/json"
+        }
+    }
+}

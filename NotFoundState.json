@@ -1,0 +1,12 @@
+{
+    "scenarioName": "UserRequestScenario",
+    "requiredScenarioState": "NotFoundState",
+    "request": {
+        "method": "GET",
+        "urlPathPattern": "/user/.*"
+    },
+    "response": {
+        "status": 404,
+        "body": "Not Found"
+    }
+}

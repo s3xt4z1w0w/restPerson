@@ -1,0 +1,14 @@
+// Переход в состояние, при котором возвращается 404
+{
+    "scenarioName": "UserRequestScenario",
+    "requiredScenarioState": "Started",
+    "newScenarioState": "NotFoundState",
+    "request": {
+        "method": "GET",
+        "urlPathPattern": "/trigger-404"
+    },
+    "response": {
+        "status": 200,
+        "body": "Triggered 404 state"
+    }
+}

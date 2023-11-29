@@ -1,0 +1,13 @@
+{
+    "scenarioName": "UserRequestScenario",
+    "requiredScenarioState": "NotFoundState",
+    "newScenarioState": "Started",
+    "request": {
+        "method": "GET",
+        "urlPathPattern": "/reset-404"
+    },
+    "response": {
+        "status": 200,
+        "body": "Reset to 200 state"
+    }
+}
