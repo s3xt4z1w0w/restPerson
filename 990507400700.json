@@ -1,1 +1,225 @@
-{"iin":"990507400700","firstName":"АРУЖАН","surname":"ДУЛАТҚЫЗЫ","patronymic":null,"engFirstName":"ARUZHAN","engSurname":"DULATKYZY","birthDate":"1999-05-07T00:00:00","gender":{"code":"2","nameRu":"Женский","nameKz":"Әйел","changeDate":"2013-05-17T17:29:19+06:00"},"nationality":{"code":"005","nameRu":"КАЗАШКА","nameKz":"ҚАЗАҚ","changeDate":"2008-03-01T13:21:45+06:00"},"citizenship":{"code":"398","nameRu":"КАЗАХСТАН","nameKz":"ҚАЗАҚСТАН","changeDate":"2008-03-01T13:21:44+06:00"},"lifeStatus":{"code":"0","nameRu":"Нормальный","nameKz":"Қалыпты","changeDate":"2008-03-01T13:21:45+06:00"},"birthPlace":{"country":{"code":"398","nameRu":"КАЗАХСТАН","nameKz":"ҚАЗАҚСТАН","changeDate":"2008-03-01T13:21:44+06:00"},"district":{"code":"1919","nameRu":"ЖАМБЫЛСКАЯ","nameKz":"ЖАМБЫЛ","changeDate":"2008-03-01T13:21:45+06:00"},"region":{"code":"1919401","nameRu":"ТАРАЗ","nameKz":"ТАРАЗ","changeDate":"2008-03-01T13:21:45+06:00"},"city":"-"},"regAddress":{"country":{"code":"398","nameRu":"КАЗАХСТАН","nameKz":"ҚАЗАҚСТАН","changeDate":"2008-03-01T13:21:44+06:00"},"district":{"code":"1919","nameRu":"ЖАМБЫЛСКАЯ","nameKz":"ЖАМБЫЛ","changeDate":"2008-03-01T13:21:45+06:00"},"region":{"code":"1919401","nameRu":"ТАРАЗ","nameKz":"ТАРАЗ","changeDate":"2008-03-01T13:21:45+06:00"},"street":"УЛИЦА Каныша Сатбаева","building":"13","flat":"24","beginDate":"2007-02-28T00:00:00","status":{"code":"1","nameRu":"Зарегистрирован","nameKz":"Тіркелді","changeDate":"2013-11-29T22:36:46+06:00"},"invalidity":{"code":"0","nameRu":"Зарегистрирован","nameKz":"Тіркелді","changeDate":"2013-11-29T22:36:46+06:00"},"arCode":"1201400013223454"},"documents":{"listOfDocuments":[{"type":{"code":"001","nameRu":"ПАСПОРТ РК","nameKz":"ҚР ПАСПОРТЫ","changeDate":"2008-03-01T13:21:45+06:00"},"number":"N14168384","beginDate":"2022-02-03T00:00:00","endDate":"2032-02-02T00:00:00","issueOrganization":{"code":"002","nameRu":"МИНИСТЕРСТВО ВНУТРЕННИХ ДЕЛ РК","nameKz":"ҚР ІШКІ ІСТЕР МИНИСТРЛІГІ","changeDate":"2008-03-01T13:21:45+06:00"},"status":{"code":"00","nameRu":"ДОКУМЕНТ ДЕЙСТВИТЕЛЕН","nameKz":"ҚҰЖАТ ЖАРАМДЫ","changeDate":"2008-03-01T13:21:45+06:00"},"firstName":"АРУЖАН","surname":"ДУЛАТҚЫЗЫ","patronymic":null,"birthDate":"1999-05-07T00:00:00"},{"type":{"code":"002","nameRu":"УДОСТОВЕРЕНИЕ РК","nameKz":"ҚР ЖЕКЕ КУӘЛІГІ","changeDate":"2008-03-01T13:21:45+06:00"},"number":"038031305","beginDate":"2015-06-08T00:00:00","endDate":"2025-06-07T00:00:00","issueOrganization":{"code":"002","nameRu":"МИНИСТЕРСТВО ВНУТРЕННИХ ДЕЛ РК","nameKz":"ҚР ІШКІ ІСТЕР МИНИСТРЛІГІ","changeDate":"2008-03-01T13:21:45+06:00"},"status":{"code":"00","nameRu":"ДОКУМЕНТ ДЕЙСТВИТЕЛЕН","nameKz":"ҚҰЖАТ ЖАРАМДЫ","changeDate":"2008-03-01T13:21:45+06:00"},"firstName":"АРУЖАН","surname":"ДУЛАТҚЫЗЫ","patronymic":null,"birthDate":"1999-05-07T00:00:00"}]}}
+INSERT INTO public.university ("name", city_id) VALUES 
+('Anhui Jianzhu University', 2),
+('Beijing Institute of Graphic Arts', 3),
+('Beijing International Studies University', 3),
+('Beijing Jiaotong University', 3),
+('Beijing University of Posts and Telecommunications', 3),
+('Changde Vocational and Technical College', 4),
+('Changsha University of Science and Technology', 9),
+('China University of Mining and Technology', 5),
+('Changchun University of Science and Technology', 6),
+('Zhejiang University of Communication', 7),
+('West China Normal University', 8),
+('Dalian Jiaotong University', 10),
+('Dongbei University of Finance and Economics', 10),
+('East China Normal University', 11),
+('Fuyang Normal University', 12),
+('Fuzhou University of Foreign Studies and Foreign Trade', 13),
+('Guilin University of Electronic Science and Technology', 14),
+('Gansu Agricultural Vocational and Technical College', 15),
+('Guangxi University of Traditional Chinese Medicine', 16);
+
+
+ALTER TABLE public.university
+ADD COLUMN abbreviation varchar(10);
+
+
+INSERT INTO public.university (abbreviation, "name", city_id) VALUES 
+('AHJZU', 'Anhui Jianzhu University', 2),
+('BIGC', 'Beijing Institute of Graphic Arts', 3),
+('BISU', 'Beijing International Studies University', 3),
+('BJTU', 'Beijing Jiaotong University', 3),
+('BUPT', 'Beijing University of Posts and Telecommunications', 3),
+('CDZY', 'Changde Vocational and Technical College', 4),
+('CSUST', 'Changsha University of Science and Technology', 9),
+('CUMT', 'China University of Mining and Technology', 5),
+('CUST', 'Changchun University of Science and Technology', 6),
+('CUZ', 'Zhejiang University of Communication', 7),
+('CWNU', 'West China Normal University', 8),
+('DJTU', 'Dalian Jiaotong University', 10),
+('DUFE', 'Dongbei University of Finance and Economics', 10),
+('ECNU', 'East China Normal University', 11),
+('FYNU', 'Fuyang Normal University', 12),
+('FZFU', 'Fuzhou University of Foreign Studies and Foreign Trade', 13),
+('GUET', 'Guilin University of Electronic Science and Technology', 14),
+('GVCA', 'Gansu Agricultural Vocational and Technical College', 15),
+('GXTCMU', 'Guangxi University of Traditional Chinese Medicine', 16);
+
+
+
+alter table "program" 
+alter COLUMN "speciality" DROP NOT NULL
+
+INSERT INTO public."program" (university_id, "name", "degree", "language", start_date, duration, speciality) VALUES 
+(1, null,'Undergraduate', 'Chinese', '2023-09-01', '4 years', null),
+(2, null,'Master', 'Chinese', '2023-09-01', '3 years', null),
+(2, null,'Undergraduate', 'Chinese', '2023-09-01', '4 years', null),
+(3, null,'Undergraduate', 'Chinese', '2023-09-01', '4 years', null),
+(4, null,'Master', 'English', '2023-09-01', '3 years', null),
+(4, null,'Undergraduate', 'Chinese', '2023-09-01', '4 years', null),
+(5, null,'Master', 'English', '2023-09-01', '3 years', null),
+(6, null,'Specialist', 'Chinese', '2023-09-01', '3 years', null),
+(6, null,'Non-academic qualification', 'English', '2023-09-01', '1 years', null),
+(7, null,'Undergraduate', 'Chinese', '2023-09-01', '4 years', null),
+(8, null,'PhD', 'Chinese', '2023-09-01', '4 years', null),
+(8, null,'Master', 'English', '2023-09-01', '3 years', null),
+(9, null,'Undergraduate', 'Chinese', '2023-09-01', '4 years', null),
+(10, null,'Master', 'English', '2023-09-01', '4 years', null),
+(11, null,'Master', 'English', '2023-09-01', '3 years', null),
+(12, null,'Master', 'Chinese', '2023-09-01', '3 years', null),
+(13, null,'Master', 'English', '2023-09-01', '3 years', null),
+(13, null,'Non-academic qualification', 'Chinese', '2023-09-01', '1 years', null),
+(14, null,'Master', 'English', '2023-09-01', '4 years', null),
+(14, null,'Undergraduate', 'Chinese', '2023-09-01', '4 years', null),
+(15, null,'Undergraduate', 'English', '2023-09-01', '4 years', null),
+(16, null,'Undergraduate', 'Chinese', '2023-09-01', '4 years', null),
+(17, null,'Master', 'English', '2023-09-01', '3 years', null),
+(17, null,'Undergraduate', 'Chinese', '2023-09-01', '4 years', null),
+(18, null,'Specialist', 'Chinese', '2023-09-01', '3 years', null),
+(19, null,'Undergraduate', 'Chinese', '2023-09-01', '4-5 years', null),
+(19, null,'Master', 'Chinese', '2023-09-01', '3 years', null)
+
+
+
+INSERT INTO public.scholarship (program_id, "type", coverage, amount, deadline, "comments") VALUES 
+(3, 'school award', NULL, 'To be determined', '2024-05-08', NULL),
+(4, 'school award', NULL, 'none', '2024-06-30', NULL),
+(4, 'school award', NULL, 'none', '2024-06-30', NULL), -- Duplicate with program_id 4 and 5 need to be clarified
+(5, 'school award', NULL, 'none', '2024-06-30', NULL),
+(6, 'City Award', NULL, 'none', '2024-05-31', NULL),
+(7, 'National Award', 'Living expenses', '2,500 yuan/month', '2024-06-10', NULL),
+(8, 'National Award', 'Living expenses', '3,000 yuan/month', '2024-06-10', NULL),
+(10, 'school award', NULL, 'none', '2024-07-31', NULL),
+(11, 'school award', NULL, 'none', '2024-07-31', NULL),
+(12, 'International Chinese Teacher Scholarship', 'Living expenses', '2,500 yuan/month', '2024-05-15', NULL),
+(13, 'school award', 'Living expenses', '1,000 yuan/month', '2024-07-07', NULL),
+(14, 'school award', 'Living expenses', '1,000 yuan/month', '2024-07-07', NULL),
+(15, 'National Award', 'Living expenses', '2,500 yuan/month', '2024-05-10', NULL),
+(16, 'school award', NULL, NULL, '2024-04-06', NULL),
+(17, 'school award', 'Bursary', '500-1,000 yuan', '2024-06-30', NULL),
+(18, 'National Award', 'Living expenses', '3,000 yuan/month', '2024-05-10', NULL),
+(19, 'National Award', 'Living expenses', '2,500 yuan/month', '2024-05-15', NULL),
+(20, 'National Award', NULL, NULL, '2024-04-20', NULL),
+(21, 'International Chinese Teacher Scholarship', 'Living expenses', '2,500 yuan/month', '2024-05-15', NULL),
+(22, 'International Chinese Teacher Scholarship', 'Living expenses', '2,500 yuan/month', '2024-05-15', NULL),
+(23, 'school award', NULL, 'none', '2024-09-20', NULL),
+(24, 'school award', NULL, 'none', '2024-08-31', NULL),
+(25, 'school award', NULL, 'none', '2024-06-30', NULL),
+(26, 'school award', NULL, 'none', '2024-06-30', NULL),
+(27, 'school award', 'Living expenses', '1,000 yuan/month', '2024-06-30', NULL),
+(28, 'Provincial Award', NULL, 'To be determined', '2024-05-30', NULL),
+(29, 'Provincial Award', NULL, 'To be determined', '2024-05-30', NULL);
+
+
+
+INSERT INTO public."cost" (program_id, tuition, dormitory_cost, registration_fee, insurance_cost, medical_examination_cost, literature_cost, additional_costs, deposit, accommodation_min, accommodation_max, living_expenses_min, living_expenses_max) VALUES 
+(3, 0, '3,000 yuan/room for 2 people', 400, 800, 500, 400, NULL, NULL, NULL, NULL, NULL, NULL),
+(4, 22000, '11,520 yuan/year/room for 2 people, 5,760 yuan/year/room for 4 people', 600, 800, NULL, 550, NULL, NULL, NULL, NULL, NULL, NULL),
+(5, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(6, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(7, 24800, 'Triple room, double room, accommodation fee 16,200 yuan - 21,600 yuan/year/person', 500, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(8, 35000, 'Triple room, double room, accommodation fee 16,200 yuan - 21,600 yuan/year/person', 600, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(10, 0, NULL, 600, NULL, 200, 400, NULL, NULL, NULL, NULL, NULL, NULL),
+(11, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(12, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(13, 17000, '3,000 yuan/year/2 people room', 400, 600, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(14, 17000, '3,000 yuan/year/2 people room', 400, 600, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(15, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(16, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(17, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(18, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(19, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(20, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(21, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(22, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(23, 15000, '3,000 yuan/room for 2 people', 400, NULL, NULL, 500, NULL, NULL, NULL, NULL, NULL, NULL),
+(24, 16000, '3200 yuan/2 people/year', 500, 800, 500, 500, '400-800 yuan', 2000, NULL, NULL, NULL, NULL),
+(25, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(26, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(27, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(28, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(29, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+
+
+ALTER TABLE scholarship 
+ADD COLUMN isAccommodation boolean DEFAULT false;
+alter table scholarship 
+add column isLivingExpense boolean default false
+
+ALTER TABLE public."program"
+--DROP COLUMN isAccommodation,
+DROP COLUMN isLivingExpense
+
+
+UPDATE public.scholarship
+SET isLivingExpense = CASE 
+    WHEN coverage IS NOT NULL THEN true
+    ELSE false
+end
+
+
+INSERT INTO public."cost" (program_id, tuition, dormitory_cost, registration_fee, insurance_cost, medical_examination_cost, literature_cost, additional_costs, accommodation_min, accommodation_max, living_expenses_min, living_expenses_max) VALUES 
+(3, 0, 1500, 400, 800, 500, 400, NULL, 300, 2600, 0, 2000),
+(4, 22000, 5760, 600, 800, NULL, 550, NULL, 300, 2600, 0, 2000),
+(5, 0, NULL, NULL, NULL, NULL, NULL, NULL, 300, 2600, 0, 2000),
+(6, 0, NULL, NULL, NULL, NULL, NULL, NULL, 300, 2600, 0, 2000),
+(7, 24800, 1800, 500, NULL, NULL, NULL, NULL, 300, 2600, 0, 2000),
+(8, 35000, 1800, 600, NULL, NULL, NULL, NULL, 300, 2600, 0, 2000),
+(10, 0, NULL, 600, NULL, 200, 400, NULL, 300, 2600, 0, 2000),
+(11, 0, NULL, NULL, NULL, NULL, NULL, NULL, 300, 2600, 0, 2000),
+(12, 0, NULL, NULL, NULL, NULL, NULL, NULL, 300, 2600, 0, 2000),
+(13, 17000, 1500, 400, 600, NULL, NULL, NULL, 300, 2600, 0, 2000),
+(14, 17000, 1500, 400, 600, NULL, NULL, NULL, 300, 2600, 0, 2000),
+(15, 0, NULL, NULL, NULL, NULL, NULL, NULL, 300, 2600, 0, 2000),
+(16, 0, NULL, NULL, NULL, NULL, NULL, NULL, 300, 2600, 0, 2000),
+(17, 0, NULL, NULL, NULL, NULL, NULL, NULL, 300, 2600, 0, 2000),
+(18, 0, NULL, NULL, NULL, NULL, NULL, NULL, 300, 2600, 0, 2000),
+(19, 0, NULL, NULL, NULL, NULL, NULL, NULL, 300, 2600, 0, 2000),
+(20, 0, NULL, NULL, NULL, NULL, NULL, NULL, 300, 2600, 0, 2000),
+(21, 0, NULL, NULL, NULL, NULL, NULL, NULL, 300, 2600, 0, 2000),
+(22, 0, NULL, NULL, NULL, NULL, NULL, NULL, 300, 2600, 0, 2000),
+(23, 15000, 1500, 400, NULL, NULL, 500, NULL, 300, 2600, 0, 2000),
+(24, 16000, 1600, 500, 800, 500, 500, NULL, 300, 2600, 0, 2000),
+(25, 0, NULL, NULL, NULL, NULL, NULL, NULL, 300, 2600, 0, 2000),
+(26, 0, NULL, NULL, NULL, NULL, NULL, NULL, 300, 2600, 0, 2000),
+(27, 0, NULL, NULL, NULL, NULL, NULL, NULL, 300, 2600, 0, 2000),
+(28, 0, NULL, NULL, NULL, NULL, NULL, NULL, 300, 2600, 0, 2000),
+(29, 0, NULL, NULL, NULL, NULL, NULL, NULL, 300, 2600, 0, 2000);
+
+
+ALTER TABLE public."cost"
+ADD COLUMN deposit numeric(10, 2) null
+
+select "public"."city"."city_id", "public"."city"."name", "public"."city"."country_id", "public"."university"."university_id", "public"."university"."name", "public"."university"."city_id", "public"."university"."abbreviation", "public"."program"."program_id", "public"."program"."university_id", "public"."program"."name", "public"."program"."degree", "public"."program"."language", "public"."program"."start_date", "public"."program"."duration", "public"."program"."speciality", "public"."cost"."cost_id", "public"."cost"."program_id", "public"."cost"."tuition", "public"."cost"."dormitory_cost", "public"."cost"."registration_fee", "public"."cost"."insurance_cost", "public"."cost"."medical_examination_cost", "public"."cost"."literature_cost", "public"."cost"."additional_costs", "public"."cost"."accommodation_min", "public"."cost"."accommodation_max", "public"."cost"."living_expenses_min", "public"."cost"."living_expenses_max", "public"."cost"."deposit", "public"."scholarship"."scholarship_id", "public"."scholarship"."program_id", "public"."scholarship"."type", "public"."scholarship"."coverage", "public"."scholarship"."amount", "public"."scholarship"."deadline", "public"."scholarship"."comments", "public"."scholarship"."isaccommodation", "public"."scholarship"."islivingexpense" 
+from "public"."city" join "public"."university" on "public"."university"."city_id" = "public"."city"."city_id" 
+join "public"."program" on "public"."program"."university_id" = "public"."university"."university_id" 
+join "public"."cost" on "public"."cost"."program_id" = "public"."program"."program_id" 
+join "public"."scholarship" on "public"."scholarship"."program_id" = "public"."program"."program_id"
+where true and "public"."program"."language" = 'Chinese'
+
+select distinct degree from "program" p  s  s  
+select * from city c 
+join university u on u.city_id = c.city_id 
+join "program" p on p.university_id = u.university_id 
+join "cost" c2 on c2.program_id = p.program_id 
+join scholarship s on s.program_id = p.program_id 
+where p."language" = 'Chinese'
+order by p."name" asc
+CITY
+                        .join(UNIVERSITY).on(UNIVERSITY.CITY_ID.eq(CITY.CITY_ID))
+                        .join(PROGRAM).on(PROGRAM.UNIVERSITY_ID.eq(UNIVERSITY.UNIVERSITY_ID))
+                        .join(COST).on(COST.PROGRAM_ID.eq(PROGRAM.PROGRAM_ID))
+                        .join(SCHOLARSHIP).on(SCHOLARSHIP.PROGRAM_ID.eq(PROGRAM.PROGRAM_ID)))
+                        
+                        
+SELECT p.start_date, EXTRACT(MONTH FROM p.start_date) AS month
+FROM program p;
+
+
+SELECT *
+FROM city c 
+JOIN university u ON u.city_id = c.city_id 
+JOIN program p ON p.university_id = u.university_id 
+JOIN cost c2 ON c2.program_id = p.program_id 
+JOIN scholarship s ON s.program_id = p.program_id 
+WHERE EXTRACT(MONTH FROM p.start_date) IN (6, 7, 8);
