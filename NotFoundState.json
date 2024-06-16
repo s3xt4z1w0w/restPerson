@@ -1,12 +1,40 @@
-{
-    "scenarioName": "UserRequestScenario",
-    "requiredScenarioState": "NotFoundState",
-    "request": {
-        "method": "GET",
-        "urlPathPattern": "/user/.*"
-    },
-    "response": {
-        "status": 404,
-        "body": "Not Found"
+@PostMapping("sendIos")
+    public ResponseEntity<?> sendIos() throws IOException {
+        String certPath = "C:\\Users\\reolitic\\Desktop\\work\\PushNotification\\src\\main\\resources\\DevPush.p12";
+        String bundleId = "com.tallium.eubank.smartbank";
+        String deviceToken = "9d6bb7da3463cbf46a23039653baae39ed77d89e31d69e7551efe0ea0738150a";
+
+        ApnsClient apnsClient = new ApnsClientBuilder()
+                .setApnsServer(ApnsClientBuilder.DEVELOPMENT_APNS_HOST) // Для production
+                .setClientCredentials(new File(certPath),"")
+                .build();
+
+        String payload = "{\"aps\":{\"alert\":\"Hello, world!\"}}";
+
+        SimpleApnsPushNotification pushNotification = new SimpleApnsPushNotification(
+                TokenUtil.sanitizeTokenString(deviceToken), bundleId, payload);
+
+        Future<PushNotificationResponse<SimpleApnsPushNotification>> sendNotificationFuture =
+                apnsClient.sendNotification(pushNotification);
+
+        try {
+            PushNotificationResponse<SimpleApnsPushNotification> pushNotificationResponse =
+                    sendNotificationFuture.get();
+
+            if (pushNotificationResponse.isAccepted()) {
+                System.out.println("Push notification accepted by APNs gateway.");
+            } else {
+                System.out.println("Notification rejected by the APNs gateway: " +
+                        pushNotificationResponse.getRejectionReason());
+
+                if (pushNotificationResponse.getTokenInvalidationTimestamp() != null) {
+                    System.out.println("\t…and the token is invalid as of " +
+                            pushNotificationResponse.getTokenInvalidationTimestamp());
+                }
+            }
+        } catch (InterruptedException | ExecutionException e) {
+            System.err.println("Failed to send push notification.");
+            e.printStackTrace();
+        }
+        return new ResponseEntity<>(HttpStatus.OK);
     }
-}
