@@ -5,3 +5,57 @@ https://smart-cardproduct-transfer-generic.apps.osh-cln01-test.eub.kz/transfer-g
 --header 'Accept-Language: RU' \
 --header 'Authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJoZmhyTDhKWDZpTzZaOUgwUVVBWlJrZ2VvNG9IV1VqLWlRVzFRVHdGMzBNIn0.eyJleHAiOjE3MjI4NTYwMjcsImlhdCI6MTcyMjg1NTg0NywianRpIjoiZjAxOTk4ZWUtOWJhNS00ZjE4LThjMjgtMDYyZjQyZGUxNWM0IiwiaXNzIjoiaHR0cDovL3NtYXJ0LWdlbmVyaWMtc3NvLWtleWNsb2FrLnNtYXJ0LWdlbmVyaWMuc3ZjLmNsdXN0ZXIubG9jYWw6ODA4MC9yZWFsbXMvc21hcnRiYW5rIiwiYXVkIjoic21hcnRiYW5rLWNsaWVudCIsInN1YiI6IjVkYjRjZTcyLTYzNzctNGYwMC1hNmNmLWYyMDYzNzgzMDFmMiIsInR5cCI6IkJlYXJlciIsImF6cCI6InNtYXJ0YmFuay1jbGllbnQiLCJzZXNzaW9uX3N0YXRlIjoiZjk1MzI5NTAtZjA1ZS00YzgxLTg2ZWEtNmQ4Y2FkMDRjNTM3IiwiYWNyIjoiMSIsInJlYWxtX2FjY2VzcyI6eyJyb2xlcyI6WyJvZmZsaW5lX2FjY2VzcyIsImRlZmF1bHQtcm9sZXMtc21hcnRiYW5rIiwidW1hX2F1dGhvcml6YXRpb24iXX0sInJlc291cmNlX2FjY2VzcyI6eyJhY2NvdW50Ijp7InJvbGVzIjpbIm1hbmFnZS1hY2NvdW50IiwibWFuYWdlLWFjY291bnQtbGlua3MiLCJ2aWV3LXByb2ZpbGUiXX19LCJhdXRob3JpemF0aW9uIjp7InBlcm1pc3Npb25zIjpbeyJyc2lkIjoiNWFkNWNiOWUtOGNkMS00MjUwLWIxMmMtYmZlZTkwZGNiZjdiIiwicnNuYW1lIjoiRGVmYXVsdCBSZXNvdXJjZSJ9XX0sInNjb3BlIjoicHJvZmlsZSBlbWFpbCIsInNpZCI6ImY5NTMyOTUwLWYwNWUtNGM4MS04NmVhLTZkOGNhZDA0YzUzNyIsImVtYWlsX3ZlcmlmaWVkIjpmYWxzZSwidXNlcl9pZCI6MTY1MDg1MCwiYmlydGhfZGF0ZSI6IjE5OTUtMDUtMDUgMDA6MDA6MDAuMCIsIm5hbWUiOiLQkNCZ0J3SsNCgINKa0JDQoNCQ0JbQkNCZIiwicHJlZmVycmVkX3VzZXJuYW1lIjoiNzAwMDQ0NDc3NzciLCJtaWRkbGVfbmFtZSI6ItCV0KDQltCQ0J3SmtCr0JfQqyIsImdpdmVuX25hbWUiOiLQkNCZ0J3SsNCgIiwiZmFtaWx5X25hbWUiOiLSmtCQ0KDQkNCW0JDQmSIsImNsaWVudF9pZCI6MTc4NTU4MiwiaWluIjoiOTUwNTA1NDAwMTU4IiwicGVyc29uX2lkIjozMDE3NDQ5fQ.NbTx8WbK91P_37huuIW3oAv1fhG9Erz2YqZUdxQJ_nFnAaYjqim253IOvSFkIHu_P89ASZbTNYZtHIVdos3t1orhmHordslQA08R8bmZhfXiqdD7IqGSpghGF66NO1yJsATvKeG0yvlrL-BHKelkkP49LXP2V484POLDH7oDqDyjWL05Ofx6nA6laiHBjckLui781zRN_OAcJ8vILgNytTFTJWWVH5p9yLHKLrW1U_vxlWRyfsbRHTwiMMtNsqNzrqSg8aRFl_FeKi5Tfnbzqr506NVTbn0xajGNei9_uwsYKRKYMG7k3yBkV7u_8ZY-cqhsdYcg8peQSkWNXBXJbw' \
 --header 'Cookie: bc709157f5d63fa0dd0b79a4d1976197=5e90bf34070ac93857c47d48d13ef7fb
+
+
+FROM nexus-dev.eub.kz:8088/library/gradle:jdk17-alpine AS build
+ARG NEXUS_URL_HTTPS
+ARG NEXUS_USER
+ARG NEXUS_PASS
+ARG APP_NAME
+ARG NAMESPACE
+ENV https_proxy='http://proxy.eub.kz:8080' \
+    HTTPS_PROXY='http://proxy.eub.kz:8080' \
+    no_proxy='localhost,127.0.0.1,eub.kz,.eub.kz,*.eub.kz' \
+    NO_PROXY='localhost,127.0.0.1,eub.kz,.eub.kz,*.eub.kz'\
+    GRADLE_USER_HOME=/home/gradle/src/.gradle \
+    APP_HOME=/home/gradle/src
+WORKDIR $APP_HOME
+COPY --chown=gradle:gradle . $APP_HOME
+RUN apk add -q --no-cache gcompat curl zip openssl && \
+    curl -s -k -u $NEXUS_USER:$NEXUS_PASS $NEXUS_URL_HTTPS/repository/RAW-repo/certs/eub_issui.cer -o eub_issuer.crt && \
+    curl -s -k -u $NEXUS_USER:$NEXUS_PASS $NEXUS_URL_HTTPS/repository/RAW-repo/certs/eub_root.cer -o eub_root.crt && \
+    openssl s_client -connect nexus-dev.eub.kz:443 2>/dev/null </dev/null |  sed -ne '/-BEGIN CERTIFICATE-/,/-END CERTIFICATE-/p' > nexus-dev.crt && \
+    openssl s_client -connect console-openshift-console.apps.osh-cln01-test.eub.kz:443 2>/dev/null </dev/null |  sed -ne '/-BEGIN CERTIFICATE-/,/-END CERTIFICATE-/p' > apps-osh-cln01-test-eub-kz.crt && \
+    openssl s_client -connect zbx-bln01-lt1:8444 2>/dev/null </dev/null |  sed -ne '/-BEGIN CERTIFICATE-/,/-END CERTIFICATE-/p' > zbx-bln01-lt1.crt && \
+    keytool -importcert -file nexus-dev.crt -alias "nexus-dev" -cacerts -storepass changeit -noprompt
+RUN mkdir -p $GRADLE_USER_HOME/caches/modules-2 && \
+    curl -k -u $NEXUS_USER:$NEXUS_PASS $NEXUS_URL_HTTPS/repository/gradle-cache/$NAMESPACE/$APP_NAME/modules-2.zip -O && \
+    unzip -q -o modules-2.zip -d $GRADLE_USER_HOME/caches/modules-2 && \
+    rm -rf $GRADLE_USER_HOME/caches/modules-2/modules-2.zip || return 0
+RUN gradle build \
+        --no-daemon \
+        -P gradle.properties \
+        -PrepoUser=$NEXUS_USER \
+        -PrepoPassword=$NEXUS_PASS && \
+    cd $GRADLE_USER_HOME/caches/modules-2 && \
+    zip -q -r modules-2.zip . && \
+    curl -k --user $NEXUS_USER:$NEXUS_PASS \
+        --upload-file modules-2.zip $NEXUS_URL_HTTPS/repository/gradle-cache/$NAMESPACE/$APP_NAME/modules-2.zip
+
+FROM nexus-dev.eub.kz:8088/library/openjdk:19-jdk-alpine3.16
+ENV APP_HOME=/home/gradle/src
+ENV JAVA_TOOL_OPTIONS -agentlib:jdwp=transport=dt_socket,server=y,address=*:5005,suspend=n
+EXPOSE 8080
+EXPOSE 5005
+COPY --from=build $APP_HOME/*.crt /usr/share/ca-certificates/
+RUN mkdir /app && \
+    mkdir /app/tmp && \
+    chmod -R 777 /app && \
+    chmod -R 777 /tmp && \
+    update-ca-certificates && \
+    keytool -importcert -file /usr/share/ca-certificates/eub_root.crt -alias "eub_root" -cacerts -storepass changeit -noprompt && \
+    keytool -importcert -file /usr/share/ca-certificates/eub_issuer.crt -alias "eub_issuer" -cacerts -storepass changeit -noprompt && \
+    keytool -importcert -file /usr/share/ca-certificates/apps-osh-cln01-test-eub-kz.crt -alias "apps-osh-cln01-test-eub-kz" -cacerts -storepass changeit -noprompt && \
+    keytool -importcert -file /usr/share/ca-certificates/zbx-bln01-lt1.crt -alias "zbx-bln01-lt1" -cacerts -storepass changeit -noprompt
+COPY --from=build $APP_HOME/build/libs/*.jar /app/app.jar
+ENTRYPOINT ["java", "-jar", "/app/app.jar"]
