@@ -59,3 +59,48 @@ RUN mkdir /app && \
     keytool -importcert -file /usr/share/ca-certificates/zbx-bln01-lt1.crt -alias "zbx-bln01-lt1" -cacerts -storepass changeit -noprompt
 COPY --from=build $APP_HOME/build/libs/*.jar /app/app.jar
 ENTRYPOINT ["java", "-jar", "/app/app.jar"]
+
+
+{
+    "id": 1000579968,
+    "title": "Седрик Ж.",
+    "subtitle": "В другой банк РК",
+    "image": "https://eub-smart-generic-s3.apps.osh-cln01-test.eub.kz/s3/api/download?fileUid=2024/07/4/d2f9944c-c1a8-48f6-9fec-1bce0473e60d",
+    "number": null,
+    "accountType": "BANK",
+    "finDocType": "IPSO",
+    "amount": {
+        "value": 100.0000,
+        "currency": {
+            "code": "KZT",
+            "symbol": "₸"
+        }
+    },
+    "fee": {
+        "value": 5.0000,
+        "currency": {
+            "code": "KZT",
+            "symbol": "₸"
+        }
+    },
+    "date": 1722602324207,
+    "isSaved": true,
+    "type": "default",
+    "link": null,
+    "status": "success",
+    "referenceId": "SW/294/020824/1716454233812536",
+    "details": [
+        {
+            "key": "Отправитель",
+            "value": "Қаражай А. Е."
+        },
+        {
+            "key": "Откуда",
+            "value": "Visa  Gold • 8457"
+        },
+        {
+            "key": "Номер телефона получателя",
+            "value": "7 747 272 73 33"
+        }
+    ]
+}
